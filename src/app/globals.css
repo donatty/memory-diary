@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap');
+
+:root {
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Sarabun', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fdfaf5;
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(249, 197, 209, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(232, 224, 245, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(212, 230, 216, 0.06) 0%, transparent 50%);
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #faf3e7;
+}
+::-webkit-scrollbar-thumb {
+  background: #edd5a8;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a853;
+}
+
+/* Selection */
+::selection {
+  background: rgba(249, 197, 209, 0.4);
+  color: #1a1520;
+}
+
+/* Paper card effect */
+.paper-card {
+  background: linear-gradient(135deg, #fdfaf5 0%, #faf3e7 100%);
+  box-shadow: 
+    0 2px 8px rgba(180, 140, 100, 0.12),
+    0 0 1px rgba(180, 140, 100, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.paper-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Lined paper effect */
+.lined-paper {
+  background-image: 
+    linear-gradient(rgba(180, 140, 100, 0.08) 1px, transparent 1px);
+  background-size: 100% 32px;
+  background-position: 0 28px;
+}
+
+/* Washi tape effect */
+.washi-tape {
+  position: relative;
+}
+.washi-tape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 60px;
+  height: 20px;
+  background: rgba(249, 197, 209, 0.6);
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Petal decorations */
+.petals-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  font-size: 20px;
+  animation: petalFall linear forwards;
+  opacity: 0.6;
+}
+
+/* Sticker effect */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 
+    2px 2px 0 rgba(180, 140, 100, 0.2),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s ease;
+}
+
+.sticker:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Diary spine */
+.diary-spine {
+  background: linear-gradient(180deg, #c9a97a 0%, #b8904e 50%, #c9a97a 100%);
+  box-shadow: 
+    -2px 0 8px rgba(0, 0, 0, 0.15),
+    2px 0 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Tape strips for cards */
+.tape-strip {
+  position: absolute;
+  height: 24px;
+  width: 56px;
+  background: rgba(249, 197, 209, 0.55);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Entry card hover */
+.entry-card {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.entry-card:hover {
+  transform: translateY(-4px) rotate(0.5deg);
+  box-shadow: 
+    0 12px 40px rgba(180, 140, 100, 0.2),
+    0 4px 12px rgba(180, 140, 100, 0.1);
+}
+
+/* Text styles */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Floating animation for decorations */
+@keyframes petalFall {
+  0% { transform: translateY(-20px) rotate(0deg) translateX(0); opacity: 0.8; }
+  25% { transform: translateY(25vh) rotate(180deg) translateX(30px); }
+  50% { transform: translateY(50vh) rotate(360deg) translateX(-20px); }
+  75% { transform: translateY(75vh) rotate(540deg) translateX(40px); }
+  100% { transform: translateY(110vh) rotate(720deg) translateX(10px); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bloom {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.5; transform: scale(0.8) rotate(180deg); }
+}
+
+@keyframes bounceSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* Prose styles */
+.diary-content {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 2;
+  color: #3d3545;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Tag styles */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(249, 197, 209, 0.3);
+  color: #3d3545;
+  border: 1px solid rgba(249, 197, 209, 0.5);
+  transition: all 0.2s;
+}
+
+.tag-pill:hover {
+  background: rgba(249, 197, 209, 0.5);
+}
+
+/* Media grid */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+/* Focus styles */
+textarea:focus, input:focus {
+  outline: none;
+}
+
+/* Smooth transitions */
+.transition-spring {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Overlay backdrop */
+.modal-backdrop {
+  background: rgba(26, 21, 32, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
