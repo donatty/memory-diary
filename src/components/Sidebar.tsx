@@ -131,7 +131,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               ✨ ทั้งหมด ({totalEntries})
             </button>
             <button
-              onClick={() => setFilterMood(filterMood === 'all' ? 'all' : 'all')}
               className={cn(
                 'w-full text-left px-3 py-2 rounded-xl text-sm transition-all duration-200 mb-1',
                 'text-rose-deep hover:bg-rose-petal/20'
